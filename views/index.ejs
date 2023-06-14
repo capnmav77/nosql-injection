@@ -20,6 +20,9 @@
     <!-- <h1>Home</h1>
     <p>Welcome to the home page!</p> -->
     <%- include('partials/navbar') %>
+    <!-- section: result -->
+    <section id="result">
+    </section>
     <!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
   <style>
@@ -61,6 +64,9 @@
     .bg-glass {
       background-color: hsla(0, 0%, 100%, 0.9) !important;
       backdrop-filter: saturate(200%) blur(25px);
+    }
+    #result {
+      display:none;
     }
   </style>
 
@@ -165,7 +171,24 @@
 }
 ).then((data) => {
     console.table(data);
-    alert("received data successfully!");
+    const result = document.getElementById('result');
+    result.style.display = "block";
+
+    if(!data.user) {
+      alert("User not found, Login failed!");
+      result.innerHTML = `<div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Login Unsuccessful!</h4>
+      <p>${data.message}</p>
+      <hr>
+      </div>`;
+    } else {
+      alert("Login Successfull!");
+      result.innerHTML = `<div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Login Successful!</h4>
+      <p>${data.message}</p>
+      <hr>
+      </div>`;
+    }
 });
   })
 </script>
