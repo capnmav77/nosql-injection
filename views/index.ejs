@@ -148,7 +148,7 @@
     try {
       password = JSON.parse(password);
     } catch (error) {
-      console.warn(error);
+      // console.warn(error);
     }
     console.log("login credentials:",email, password);
     let res = fetch('/user', {
